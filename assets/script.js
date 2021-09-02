@@ -63,15 +63,14 @@ var highScores = function() {
     // High Score
     var title = document.createElement("h1");
         title.className = "high-score-title";
-        title.textContent = "High Scores";
+        title.textContent = "Open Console Log to see how you did!";
         highScoreContainer.appendChild(title);
 
     //High Scores Display
     var initals = localStorage.getItem("initals");
-    var score = localStorage.getItem("score");
     var leaderboardScore = document.createElement("p");
         leaderboardScore.className = "leaderboard-score";
-        leaderboardScore.textContent = "1." + initals + " - " + score;
+        leaderboardScore.textContent = (initals);
         highScoreContainer.appendChild(leaderboardScore);
 
 
@@ -94,7 +93,7 @@ var highScores = function() {
     //Clear High Score Button
     var clearHighScore = document.createElement("button");
         clearHighScore.className = "clear-highScore";
-        clearHighScore.textContent = "Clear High Scores";
+        clearHighScore.textContent = "Clear Initials";
         clearHighScore.addEventListener("click", event => {
             leaderboardScore.remove();
     })
@@ -103,19 +102,14 @@ var highScores = function() {
 
 var enterScore = function() {
         // Done Container
-        var doneContainer = document.createElement("div");
-        doneContainer.className = "done-container";
-        mainEl.appendChild(doneContainer);
+    var doneContainer = document.createElement("div");
+    doneContainer.className = "done-container";
+    mainEl.appendChild(doneContainer);
         // All Done
     var done = document.createElement("h1");
     done.textContent = "All Done!";
     done.className = "done-title";
     doneContainer.appendChild(done);
-        // Score
-    var score = document.createElement("h4");
-    score.textContent = "Your final score is " + totalPoints;
-    score.className = "score";
-    doneContainer.appendChild(score); 
 
         //Input Container
     var inputContainer = document.createElement("div");
@@ -142,6 +136,7 @@ var enterScore = function() {
     submit.addEventListener("click", event => {
         //Initials
         var initals = document.getElementById("input").value;
+        localStorage.setItem("initals", initals);
         //Clear
         doneContainer.remove();
         //High Scores Page
@@ -175,13 +170,14 @@ var questionOne = function() {
     var answerContainer = document.createElement("div");
         answerContainer.className = "answer-container";
         questionContainer.appendChild(answerContainer);
+
     //Question One - answer 1
     var answerOne = document.createElement("button");
         answerOne.className = "answer-One";
         answerOne.textContent = "1. strings";
         answerContainer.appendChild(answerOne);
         answerOne.addEventListener("click", event => {
-            console.log("incorrect!");
+            console.log("question 1 - incorrect!");
             removeWrong();
 })
     //Question One - answer 2
@@ -190,7 +186,7 @@ var questionOne = function() {
         answerTwo.textContent = "2. booleans";
         answerContainer.appendChild(answerTwo);
         answerTwo.addEventListener("click", event => {
-            console.log("incorrect!");
+            console.log("question 1 - incorrect!");
         removeWrong();
 })
     //Question One - answer 3
@@ -200,8 +196,7 @@ var questionOne = function() {
         answerContainer.appendChild(answerThree);
         answerThree.addEventListener("click", event => {
             questionContainer.remove();
-            console.log("correct!");
-            console.log("1 point");
+            console.log("question 1 - correct!");
             questionTwo();
 })
     //Question One - answer 4
@@ -210,7 +205,7 @@ var questionOne = function() {
         answerFour.textContent = "4. numbers";
         answerContainer.appendChild(answerFour);
         answerFour.addEventListener("click", event => {
-            console.log("incorrect!");
+            console.log("question 1 - incorrect!");
             removeWrong();
 });
 }
@@ -247,7 +242,7 @@ var questionTwo = function() {
         answerOne.textContent = "1. quotes";
         answerContainer.appendChild(answerOne);
         answerOne.addEventListener("click", event => {
-            console.log("incorrect!");
+            console.log("question 2 - incorrect!");
             removeWrong();
 });
     //Question Two - answer 2
@@ -256,7 +251,7 @@ var questionTwo = function() {
         answerTwo.textContent = "2. curly brackets";
         answerContainer.appendChild(answerTwo);
         answerTwo.addEventListener("click", event => {
-            console.log("incorrect!");
+            console.log("questin 2 - incorrect!");
             removeWrong();
 });
     //Question Two - answer 3
@@ -266,8 +261,7 @@ var questionTwo = function() {
         answerContainer.appendChild(answerThree);
         answerThree.addEventListener("click", event => {    
             questionContainer.remove(); 
-            console.log("correct!");
-            console.log("1 point");
+            console.log("question 2 - correct!");
             questionThree();
 });
     //Question Two - answer 4
@@ -276,7 +270,7 @@ var questionTwo = function() {
         answerFour.textContent = "4. square brackets";
         answerContainer.appendChild(answerFour);
         answerFour.addEventListener("click", event => {
-            console.log("incorrect!");
+            console.log("question 2 - incorrect!");
             removeWrong();
 });
 }
@@ -313,7 +307,7 @@ var questionThree = function() {
         answerOne.textContent = "1. numbers & strings";
         answerContainer.appendChild(answerOne);
         answerOne.addEventListener("click", event => {
-            console.log("incorrect!");
+            console.log("question 3 - incorrect!");
             removeWrong();
 })
             //Question Three - answer 2
@@ -322,7 +316,7 @@ var questionThree = function() {
         answerTwo.textContent = "2. other arrays";
         answerContainer.appendChild(answerTwo);
         answerTwo.addEventListener("click", event => {
-            console.log("incorrect!");
+            console.log("question 3 - incorrect!");
         removeWrong();
 })
             //Question Three - answer 3
@@ -331,7 +325,7 @@ var questionThree = function() {
         answerThree.textContent = "3. booleans";
         answerContainer.appendChild(answerThree);
         answerThree.addEventListener("click", event => {
-            console.log("incorrect!");
+            console.log("question 3 - incorrect!");
             removeWrong();
         })
             //Question Three - answer 4
@@ -341,8 +335,7 @@ var questionThree = function() {
         answerContainer.appendChild(answerFour);
         answerFour.addEventListener("click", event => {
             questionContainer.remove();
-            console.log("correct!");
-            console.log("1 point");
+            console.log("question 3 - correct!");
             questionFour();
 });
 }
@@ -379,7 +372,7 @@ var questionThree = function() {
             answerOne.textContent = "1. commas";
             answerContainer.appendChild(answerOne);
             answerOne.addEventListener("click", event => {
-                console.log("incorrect!");
+                console.log("question 4 - incorrect!");
                 removeWrong();
     })
         //Question Four - answer 2
@@ -388,7 +381,7 @@ var questionThree = function() {
             answerTwo.textContent = "2. curly brackets";
             answerContainer.appendChild(answerTwo);
             answerTwo.addEventListener("click", event => {
-                console.log("incorrect!");
+                console.log("question 4 - incorrect!");
                 removeWrong();
     })
         //Question Four - answer 3
@@ -397,7 +390,7 @@ var questionThree = function() {
             answerThree.textContent = "3. quotes";
             answerContainer.appendChild(answerThree);
             answerThree.addEventListener("click", event => {
-                console.log("incorrect!");
+                console.log("question 4 - incorrect!");
                 removeWrong();
 
     })
@@ -408,8 +401,7 @@ var questionThree = function() {
             answerContainer.appendChild(answerFour);
             answerFour.addEventListener("click", event => {
             questionContainer.remove();
-            console.log("correct!");
-            console.log("1 point")
+            console.log("question 4 - correct!");
             questionFive();
     });
 }
@@ -445,9 +437,9 @@ var questionThree = function() {
             answerOne.textContent = "1. CamelCasing";
             answerContainer.appendChild(answerOne);
             answerOne.addEventListener("click", event => {
-                console.log("correct!");
-                console.log("1 point");
-                questionContainer.remove();        
+                console.log("question 5 - correct!");
+                questionContainer.remove(); 
+                removeWrong();       
     })
         //Question Five - Answer 2
         var answerTwo = document.createElement("button");
@@ -455,7 +447,7 @@ var questionThree = function() {
             answerTwo.textContent = "2. Uppercase";
             answerContainer.appendChild(answerTwo);
             answerTwo.addEventListener("click", event => {
-                console.log("incorrect!");
+                console.log("question 5 - incorrect!");
                 removeWrong();
     })
         //Question Five - Answer 3
@@ -464,7 +456,7 @@ var questionThree = function() {
             answerThree.textContent = "3. Case Sensitive";
             answerContainer.appendChild(answerThree);
             answerThree.addEventListener("click", event => {
-                console.log("incorrect!");
+                console.log("question 5 - incorrect!");
                 removeWrong();
     })
         //Question Five - Answer 4
@@ -473,7 +465,7 @@ var questionThree = function() {
             answerFour.textContent = "4. No Clue";
             answerContainer.appendChild(answerFour);
             answerFour.addEventListener("click", event => {
-                console.log("incorrect!");
+                console.log("question 5 - incorrect!");
                 removeWrong();
     });
 }
