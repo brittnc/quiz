@@ -12,13 +12,13 @@ header {
 :root {
     --hoverColor:  rgb(197, 16, 197);
 }
-    /* Home Page Styles */
+/* Home Page */
 .home-container {
     display: grid;
     grid-template-columns: .5fr  .85fr .5fr;
     grid-template-rows: .5fr;
 }
-        /* TITLE */
+/* Title */
 .home-title {
     grid-column: 2 / 3;
     grid-row: 1 / 2 ;
@@ -26,7 +26,7 @@ header {
     font-size: 40px;
     margin: 10px 0;
 }
-        /* Paragraph */
+/* Home Page Text */
 .home-text-p {
     text-align: center;
     grid-column: 2 / 3;
@@ -34,7 +34,7 @@ header {
     font-size: 20px;
     margin: 10px 0;
 }
-        /* BUTTON */
+/* Start Quiz Button */
 .home-btn {
     grid-row: 3/4;
     grid-column: 2/3;
@@ -54,7 +54,7 @@ header {
     border: 2px var(--hoverColor) solid;
 }
 
-    /* question */
+/* question */
 .question-container {
     display: grid;
     grid-template-columns: .5fr .85fr .5fr;
@@ -143,7 +143,7 @@ header {
     border: 2px solid var(--hoverColor);
 }
 
-/* Score input screen */
+/* Score*/
 .done-container {
     display: grid;
     grid-template-columns: .35fr 1fr .35fr;
@@ -201,7 +201,7 @@ header {
     border: 2px solid var(--hoverColor);
 }
 
-/* LEADERBOARDS */
+/* High Scores */
 
 .hs-container {
     display: grid;

@@ -12,58 +12,91 @@ var timer = function() {
             timerEl.textContent = timeLeft;
             timeLeft --;
             return timeLeft;
-        } else {
-            timerEl.textContent = "";
-            clearInterval(timeInterval);
-
         }
     }, 1000);
 }
 
 
+var start = function() {
+    //Home Container
+    var container = document.createElement("div");
+        container.className = "home-container"
+        mainEl.appendChild(container);
+
+    //Start
+    var homeHeader = document.createElement("h1");
+        homeHeader.className = "home-title";
+        homeHeader.textContent = "Coding Quiz Challenge";
+        container.appendChild(homeHeader);
+
+    //Start
+    var homeParagraph = document.createElement("p");
+        homeParagraph.className = "home-text-p";
+        homeParagraph.textContent = "Try to answer the following code-related" +
+            " questions within the time limit. Keep in mind that incorrect answers will" +
+            " penalize your score/time by ten seconds!"
+        container.appendChild(homeParagraph);
+
+    //Start Button
+    var startQuizBtn = document.createElement("button");
+        startQuizBtn.className = "home-btn";
+        startQuizBtn.textContent = "Start Quiz";
+        container.appendChild(startQuizBtn);
+
+    //Removes Elements
+    startQuizBtn.addEventListener("click", event => {
+        timer();
+        startQuizBtn.remove();
+        homeHeader.remove();
+        homeParagraph.remove();
+        questionOne();
+});
+}
+start();
+
 var highScores = function() {
     // High Score
     var highScoreContainer = document.createElement("div");
-    highScoreContainer.className = "hs-container";
-    mainEl.appendChild(highScoreContainer);
+        highScoreContainer.className = "hs-container";
+        mainEl.appendChild(highScoreContainer);
 
     // High Score
     var title = document.createElement("h1");
-    title.className = "high-score-title";
-    title.textContent = "High Scores";
-    highScoreContainer.appendChild(title);
+        title.className = "high-score-title";
+        title.textContent = "High Scores";
+        highScoreContainer.appendChild(title);
 
     //High Scores Display
     var initals = localStorage.getItem("initals");
     var score = localStorage.getItem("score");
     var leaderboardScore = document.createElement("p");
-    leaderboardScore.className = "leaderboard-score";
-    leaderboardScore.textContent = "1." + initals + " - " + score;
-    highScoreContainer.appendChild(leaderboardScore);
+        leaderboardScore.className = "leaderboard-score";
+        leaderboardScore.textContent = "1." + initals + " - " + score;
+        highScoreContainer.appendChild(leaderboardScore);
 
 
     //Leader Board
     var leaderboard = document.createElement("div");
-    leaderboard.className = "leaderboard";
-    highScoreContainer.appendChild(leaderboard);
-     //"o Back Button
+        leaderboard.className = "leaderboard";
+        highScoreContainer.appendChild(leaderboard);
+     //Back Button
     var goBack = document.createElement("button");
-    goBack.className = "go-back-btn";
-    goBack.textContent = "Go Back";
-    goBack.addEventListener("click", event => {
-        totalPoints = 0;
-        end = false;
-        timeLeft = 75;
-        highScoreContainer.remove();
-        start();
+        goBack.className = "go-back-btn";
+        goBack.textContent = "Go Back";
+        goBack.addEventListener("click", event => {
+            totalPoints = 0;
+            end = false;
+            timeLeft = 45;
+            highScoreContainer.remove();
+                start();
     })
     leaderboard.appendChild(goBack);
     //Clear High Score Button
     var clearHighScore = document.createElement("button");
-    clearHighScore.className = "clear-highScore";
-    clearHighScore.textContent = "Clear High Scores";
-    clearHighScore.addEventListener("click", event => {
-        leaderboardScore.remove();
+        clearHighScore.className = "clear-highScore";
+        clearHighScore.textContent = "Clear High Scores";
+        clearHighScore.addEventListener("click", event => {
+            leaderboardScore.remove();
     })
     leaderboard.appendChild(clearHighScore);
 }
@@ -118,341 +151,330 @@ var enterScore = function() {
 }
 
 
-//QUESTION ONE
+//QUESTION ONE---------------------------------------------------
 
 var questionOne = function() {
     //Wrong Answer
-var removeWrong = function() {
+    var removeWrong = function() {
     timeLeft = timeLeft - 10;
     questionContainer.remove();
     questionTwo();
 }
     //Question Container
-var questionContainer = document.createElement("div");
-questionContainer.className = "question-container";
-mainEl.appendChild(questionContainer);
+    var questionContainer = document.createElement("div");
+        questionContainer.className = "question-container";
+        mainEl.appendChild(questionContainer);
 
     //Question One - Question
-var question = document.createElement("h1");
-question.className = "question";
-question.textContent = "Commonly Used data types DO NOT Include:";
-questionContainer.appendChild(question);
+    var question = document.createElement("h1");
+        question.className = "question";
+        question.textContent = "1.Commonly Used data types DO NOT Include:";
+        questionContainer.appendChild(question);
 
     //Answer Container
-var answerContainer = document.createElement("div");
-answerContainer.className = "answer-container";
-questionContainer.appendChild(answerContainer);
+    var answerContainer = document.createElement("div");
+        answerContainer.className = "answer-container";
+        questionContainer.appendChild(answerContainer);
     //Question One - answer 1
-var answerOne = document.createElement("button");
-answerOne.className = "answer-One";
-answerOne.textContent = "1. strings";
-answerContainer.appendChild(answerOne);
-answerOne.addEventListener("click", event => {
-    removeWrong();
+    var answerOne = document.createElement("button");
+        answerOne.className = "answer-One";
+        answerOne.textContent = "1. strings";
+        answerContainer.appendChild(answerOne);
+        answerOne.addEventListener("click", event => {
+            console.log("incorrect!");
+            removeWrong();
 })
     //Question One - answer 2
-var answerTwo = document.createElement("button");
-answerTwo.className = "answer-Two";
-answerTwo.textContent = "2. booleans";
-answerContainer.appendChild(answerTwo);
-answerTwo.addEventListener("click", event => {
-    removeWrong();
+    var answerTwo = document.createElement("button");
+        answerTwo.className = "answer-Two";
+        answerTwo.textContent = "2. booleans";
+        answerContainer.appendChild(answerTwo);
+        answerTwo.addEventListener("click", event => {
+            console.log("incorrect!");
+        removeWrong();
 })
     //Question One - answer 3
-var answerThree = document.createElement("button");
-answerThree.className = "answer-Three";
-answerThree.textContent = "3. alerts";
-answerContainer.appendChild(answerThree);
-answerThree.addEventListener("click", event => {
-    questionContainer.remove();
-    questionTwo();
+    var answerThree = document.createElement("button");
+        answerThree.className = "answer-Three";
+        answerThree.textContent = "3. alerts";
+        answerContainer.appendChild(answerThree);
+        answerThree.addEventListener("click", event => {
+            questionContainer.remove();
+            console.log("correct!");
+            console.log("1 point");
+            questionTwo();
 })
     //Question One - answer 4
-var answerFour = document.createElement("button");
-answerFour.className = "answer-Four";
-answerFour.textContent = "4. numbers";
-answerContainer.appendChild(answerFour);
-answerFour.addEventListener("click", event => {
-    removeWrong();
-})
+    var answerFour = document.createElement("button");
+        answerFour.className = "answer-Four";
+        answerFour.textContent = "4. numbers";
+        answerContainer.appendChild(answerFour);
+        answerFour.addEventListener("click", event => {
+            console.log("incorrect!");
+            removeWrong();
+});
 }
 
 
-//QUESTION TWO
+//QUESTION TWO---------------------------------------------------
 
 var questionTwo = function() {
-    //wrong answer
-var removeWrong = function() {
-    questionThree();
-    questionContainer.remove();
-    timeLeft = timeLeft - 10;
+    //Wrong Answer
+    var removeWrong = function() {
+        timeLeft = timeLeft - 10;
+        questionContainer.remove();
+        questionThree();
 }
-    //div
-var questionContainer = document.createElement("div");
-questionContainer.className = "question-container";
-mainEl.appendChild(questionContainer);
+    //Question Container
+    var questionContainer = document.createElement("div");
+        questionContainer.className = "question-container";
+        mainEl.appendChild(questionContainer);
 
     //Question 2 - Question
-var question = document.createElement("h1");
-question.className = "question";
-question.textContent = "The condition in an if / else statement is enclosed with ________.";
-questionContainer.appendChild(question);
+    var question = document.createElement("h1");
+        question.className = "question";
+        question.textContent = "2.The condition in an if / else statement is enclosed with ________.";
+        questionContainer.appendChild(question);
 
     //Answer Container
-var answerContainer = document.createElement("div");
-answerContainer.className = "answer-container";
-questionContainer.appendChild(answerContainer);
+    var answerContainer = document.createElement("div");
+        answerContainer.className = "answer-container";
+        questionContainer.appendChild(answerContainer);
+
     //Question Two - answer 1
-var answerOne = document.createElement("button");
-answerOne.className = "answer-One";
-answerOne.textContent = "1. quotes";
-answerContainer.appendChild(answerOne);
-answerOne.addEventListener("click", event => {
-    removeWrong();
+    var answerOne = document.createElement("button");
+        answerOne.className = "answer-One";
+        answerOne.textContent = "1. quotes";
+        answerContainer.appendChild(answerOne);
+        answerOne.addEventListener("click", event => {
+            console.log("incorrect!");
+            removeWrong();
 });
     //Question Two - answer 2
-var answerTwo = document.createElement("button");
-answerTwo.className = "answer-Two";
-answerTwo.textContent = "2. curly brackets";
-answerContainer.appendChild(answerTwo);
-answerTwo.addEventListener("click", event => {
-    removeWrong();
+    var answerTwo = document.createElement("button");
+        answerTwo.className = "answer-Two";
+        answerTwo.textContent = "2. curly brackets";
+        answerContainer.appendChild(answerTwo);
+        answerTwo.addEventListener("click", event => {
+            console.log("incorrect!");
+            removeWrong();
 });
     //Question Two - answer 3
-var answerThree = document.createElement("button");
-answerThree.className = "answer-Three";
-answerThree.textContent = "3. parenthesis";
-answerContainer.appendChild(answerThree);
-answerThree.addEventListener("click", event => {
-    questionContainer.remove();
-    questionThree();
+    var answerThree = document.createElement("button");
+        answerThree.className = "answer-Three";
+        answerThree.textContent = "3. parenthesis";
+        answerContainer.appendChild(answerThree);
+        answerThree.addEventListener("click", event => {    
+            questionContainer.remove(); 
+            console.log("correct!");
+            console.log("1 point");
+            questionThree();
 });
     //Question Two - answer 4
-var answerFour = document.createElement("button");
-answerFour.className = "answer-Four";
-answerFour.textContent = "4. square brackets";
-answerContainer.appendChild(answerFour);
-answerFour.addEventListener("click", event => {
-    removeWrong();
+    var answerFour = document.createElement("button");
+        answerFour.className = "answer-Four";
+        answerFour.textContent = "4. square brackets";
+        answerContainer.appendChild(answerFour);
+        answerFour.addEventListener("click", event => {
+            console.log("incorrect!");
+            removeWrong();
 });
 }
 
 
-//QUESTION THREE
+//QUESTION THREE---------------------------------------------------
 
 var questionThree = function() {
-    //Wrong Answers
-        var removeWrong = function() {
-            timeLeft = timeLeft - 10;
-            questionContainer.remove();
-            questionFour();
-        }
-            //div
-        var questionContainer = document.createElement("div");
+    //Wrong Answer
+    var removeWrong = function() {
+        timeLeft = timeLeft - 10;
+        questionContainer.remove();
+        questionFour();
+}
+            //Question Container
+    var questionContainer = document.createElement("div");
         questionContainer.className = "question-container";
         mainEl.appendChild(questionContainer);
     
             //Question Three - Question
-        var question = document.createElement("h1");
+    var question = document.createElement("h1");
         question.className = "question";
-        question.textContent = "Arrays in JavaScript can be used to store __________.";
+        question.textContent = "3.Arrays in JavaScript can be used to store __________.";
         questionContainer.appendChild(question);
     
             //Answer Container
-        var answerContainer = document.createElement("div");
+    var answerContainer = document.createElement("div");
         answerContainer.className = "answer-container";
         questionContainer.appendChild(answerContainer);
+
             //Question Three - answer 1
-        var answerOne = document.createElement("button");
+    var answerOne = document.createElement("button");
         answerOne.className = "answer-One";
         answerOne.textContent = "1. numbers & strings";
         answerContainer.appendChild(answerOne);
         answerOne.addEventListener("click", event => {
+            console.log("incorrect!");
             removeWrong();
-        })
+})
             //Question Three - answer 2
-        var answerTwo = document.createElement("button");
+    var answerTwo = document.createElement("button");
         answerTwo.className = "answer-Two";
         answerTwo.textContent = "2. other arrays";
         answerContainer.appendChild(answerTwo);
         answerTwo.addEventListener("click", event => {
-            removeWrong();
-        })
+            console.log("incorrect!");
+        removeWrong();
+})
             //Question Three - answer 3
-        var answerThree = document.createElement("button");
+    var answerThree = document.createElement("button");
         answerThree.className = "answer-Three";
         answerThree.textContent = "3. booleans";
         answerContainer.appendChild(answerThree);
         answerThree.addEventListener("click", event => {
+            console.log("incorrect!");
             removeWrong();
         })
             //Question Three - answer 4
-        var answerFour = document.createElement("button");
+    var answerFour = document.createElement("button");
         answerFour.className = "answer-Four";
         answerFour.textContent = "4. all of the above";
         answerContainer.appendChild(answerFour);
         answerFour.addEventListener("click", event => {
             questionContainer.remove();
+            console.log("correct!");
+            console.log("1 point");
             questionFour();
-        })
-    }
-
-
-//QUESTIN FOUR
-
-var questionFour = function() {
-    //Wrong Answer
-    var removeWrong = function() {
-        timeLeft = timeLeft - 10;
-        questionContainer.remove();
-        questionFive();
-        return timeLeft;
-    }
-        //div
-    var questionContainer = document.createElement("div");
-    questionContainer.className = "question-container";
-    mainEl.appendChild(questionContainer);
-
-        //Question Four - Question
-    var question = document.createElement("h1");
-    question.className = "question";
-    question.textContent = "String values must be enclosed within _____ when being assigned to varibles.";
-    questionContainer.appendChild(question);
-
-        //Answer Container
-    var answerContainer = document.createElement("div");
-    answerContainer.className = "answer-container";
-    questionContainer.appendChild(answerContainer);
-        //Question Four - answer 1
-    var answerOne = document.createElement("button");
-    answerOne.className = "answer-One";
-    answerOne.textContent = "1. commas";
-    answerContainer.appendChild(answerOne);
-    answerOne.addEventListener("click", event => {
-        removeWrong();
-    })
-        //Question Four - answer 2
-    var answerTwo = document.createElement("button");
-    answerTwo.className = "answer-Two";
-    answerTwo.textContent = "2. curly brackets";
-    answerContainer.appendChild(answerTwo);
-    answerTwo.addEventListener("click", event => {
-        removeWrong();
-    })
-        //Question Four - answer 3
-    var answerThree = document.createElement("button");
-    answerThree.className = "answer-Three";
-    answerThree.textContent = "3. quotes";
-    answerContainer.appendChild(answerThree);
-    answerThree.addEventListener("click", event => {
-        removeWrong();
-    })
-        //Question Four - answer 4
-    var answerFour = document.createElement("button");
-    answerFour.className = "answer-Four";
-    answerFour.textContent = "4. parenthesis";
-    answerContainer.appendChild(answerFour);
-    answerFour.addEventListener("click", event => {
-        questionContainer.remove();
-        questionFive();
-    })
+});
 }
 
-//QUESTION FIVE
 
-var questionFive = function() {
+//QUESTIN FOUR---------------------------------------------------
+
+    var questionFour = function() {
     //Wrong Answer
-    var removeWrong = function() {;
-        questionContainer.remove();
-        enterScore();
-        end = true;
+        var removeWrong = function() {
+            timeLeft = timeLeft - 10;
+            questionContainer.remove();
+            questionFive();
     }
         //Question Container
-    var questionContainer = document.createElement("div");
-    questionContainer.className = "question-container";
-    mainEl.appendChild(questionContainer);
+        var questionContainer = document.createElement("div");
+            questionContainer.className = "question-container";
+            mainEl.appendChild(questionContainer);
 
-        //Question Five - Question
-    var question = document.createElement("h1");
-    question.className = "question";
-    question.textContent = "A very useful tool used during development and debugging for printing content to the debugger is:";
-    questionContainer.appendChild(question);
+        //Question Four - Question
+        var question = document.createElement("h1");
+            question.className = "question";
+            question.textContent = "4.String values must be enclosed within _____ when being assigned to varibles.";
+            questionContainer.appendChild(question);
 
         //Answer Container
-    var answerContainer = document.createElement("div");
-    answerContainer.className = "answer-container";
-    questionContainer.appendChild(answerContainer);
-        //Question Five - Answer 1
-    var answerOne = document.createElement("button");
-    answerOne.className = "answer-One";
-    answerOne.textContent = "1. CamelCasing";
-    answerContainer.appendChild(answerOne);
-    answerOne.addEventListener("click", event => {
-        points();
-        questionContainer.remove();
-        enterScore();
-        end = true;
+        var answerContainer = document.createElement("div");
+            answerContainer.className = "answer-container";
+            questionContainer.appendChild(answerContainer);
+
+        //Question Four - answer 1
+        var answerOne = document.createElement("button");
+            answerOne.className = "answer-One";
+            answerOne.textContent = "1. commas";
+            answerContainer.appendChild(answerOne);
+            answerOne.addEventListener("click", event => {
+                console.log("incorrect!");
+                removeWrong();
     })
-        //Question Five - Answer 2
-    var answerTwo = document.createElement("button");
-    answerTwo.className = "answer-Two";
-    answerTwo.textContent = "2. Uppercase";
-    answerContainer.appendChild(answerTwo);
-    answerTwo.addEventListener("click", event => {
-        removeWrong();
+        //Question Four - answer 2
+        var answerTwo = document.createElement("button");
+            answerTwo.className = "answer-Two";
+            answerTwo.textContent = "2. curly brackets";
+            answerContainer.appendChild(answerTwo);
+            answerTwo.addEventListener("click", event => {
+                console.log("incorrect!");
+                removeWrong();
     })
-        //Question Five - Answer 3
-    var answerThree = document.createElement("button");
-    answerThree.className = "answer-Three";
-    answerThree.textContent = "3. Case Sensitive";
-    answerContainer.appendChild(answerThree);
-    answerThree.addEventListener("click", event => {
-        removeWrong();
+        //Question Four - answer 3
+        var answerThree = document.createElement("button");
+            answerThree.className = "answer-Three";
+            answerThree.textContent = "3. quotes";
+            answerContainer.appendChild(answerThree);
+            answerThree.addEventListener("click", event => {
+                console.log("incorrect!");
+                removeWrong();
+
     })
-        //Question Five - Answer 4
-    var answerFour = document.createElement("button");
-    answerFour.className = "answer-Four";
-    answerFour.textContent = "4. No Clue";
-    answerContainer.appendChild(answerFour);
-    answerFour.addEventListener("click", event => {
-        removeWrong();
-    })
-}
-
-
-var start = function() {
-        //Home Container
-    var container = document.createElement("div");
-    container.className = "home-container"
-    mainEl.appendChild(container);
-
-        //Start
-    var homeHeader = document.createElement("h1");
-    homeHeader.className = "home-title";
-    homeHeader.textContent = "Coding Quiz Challenge";
-    container.appendChild(homeHeader);
-
-        //Start
-    var homeParagraph = document.createElement("p");
-    homeParagraph.className = "home-text-p";
-    homeParagraph.textContent = "Try to answer the following code-related" +
-    " questions within the time limit. Keep in mind that incorrect answers will" +
-    " penalize your score/time by ten seconds!"
-    container.appendChild(homeParagraph);
-
-        //Start Button
-    var startQuizBtn = document.createElement("button");
-    startQuizBtn.className = "home-btn";
-    startQuizBtn.textContent = "Start Quiz";
-    container.appendChild(startQuizBtn);
-
-        //Removes Elements
-    startQuizBtn.addEventListener("click", event => {
-        timer();
-        startQuizBtn.remove();
-        homeHeader.remove();
-        homeParagraph.remove();
-        questionOne();
+        //Question Four - answer 4
+        var answerFour = document.createElement("button");
+            answerFour.className = "answer-Four";
+            answerFour.textContent = "4. parenthesis";
+            answerContainer.appendChild(answerFour);
+            answerFour.addEventListener("click", event => {
+            questionContainer.remove();
+            console.log("correct!");
+            console.log("1 point")
+            questionFive();
     });
 }
-start();
+
+//QUESTION FIVE---------------------------------------------------
+
+    var questionFive = function() {
+    //Wrong Answer
+        var removeWrong = function() {;
+            questionContainer.remove();
+            enterScore();
+            end = true;
+    }
+        //Question Container
+        var questionContainer = document.createElement("div");
+            questionContainer.className = "question-container";
+            mainEl.appendChild(questionContainer);
+
+        //Question Five - Question
+        var question = document.createElement("h1");
+            question.className = "question";
+            question.textContent = "5.A very useful tool used during development and debugging for printing content to the debugger is:";
+            questionContainer.appendChild(question);
+
+        //Answer Container
+        var answerContainer = document.createElement("div");
+            answerContainer.className = "answer-container";
+            questionContainer.appendChild(answerContainer);
+
+        //Question Five - Answer 1
+        var answerOne = document.createElement("button");
+            answerOne.className = "answer-One";
+            answerOne.textContent = "1. CamelCasing";
+            answerContainer.appendChild(answerOne);
+            answerOne.addEventListener("click", event => {
+                console.log("correct!");
+                console.log("1 point");
+                questionContainer.remove();        
+    })
+        //Question Five - Answer 2
+        var answerTwo = document.createElement("button");
+            answerTwo.className = "answer-Two";
+            answerTwo.textContent = "2. Uppercase";
+            answerContainer.appendChild(answerTwo);
+            answerTwo.addEventListener("click", event => {
+                console.log("incorrect!");
+                removeWrong();
+    })
+        //Question Five - Answer 3
+        var answerThree = document.createElement("button");
+            answerThree.className = "answer-Three";
+            answerThree.textContent = "3. Case Sensitive";
+            answerContainer.appendChild(answerThree);
+            answerThree.addEventListener("click", event => {
+                console.log("incorrect!");
+                removeWrong();
+    })
+        //Question Five - Answer 4
+        var answerFour = document.createElement("button");
+            answerFour.className = "answer-Four";
+            answerFour.textContent = "4. No Clue";
+            answerContainer.appendChild(answerFour);
+            answerFour.addEventListener("click", event => {
+                console.log("incorrect!");
+                removeWrong();
+    });
+}
+
